@@ -28,6 +28,6 @@ class RequestDeposit extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.request-deposit');
+        return $this->view('emails.request-deposit');
     }
 }

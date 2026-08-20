@@ -43,7 +43,7 @@ class DebitAlert extends Mailable
         return $this
         ->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
         ->subject(env('APP_NAME'))
-        ->markdown('emails.debit-alert')->
+        ->view('emails.debit-alert')->
         with(['mail_data' => $mail_data, 'first_name' => $first_name,
             'last_name' => $last_name, 'acct_number' => $acct_number, 'rep_name' => $rep_name,
             'bank_name' => $bank_name, 'amount' => $amount, 'transaction_id' => $transaction_id, 'account_number' => $account_number]);

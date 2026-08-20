@@ -29,7 +29,7 @@ class CardRequest extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.request-card')
+        return $this->view('emails.request-card')
         ->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
         ->subject(env('APP_NAME'));
     }

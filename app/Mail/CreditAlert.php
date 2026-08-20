@@ -38,7 +38,7 @@ class CreditAlert extends Mailable
         return $this
         ->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
         ->subject(env('APP_NAME'))
-            ->markdown('emails.credit-alert')
+            ->view('emails.credit-alert')
             ->with(['credit_data' => $credit_data, 'first_name' => $first_name,
                 'last_name' => $last_name, 'acct_number' => $acct_number, 'rep_name' => $rep_name,
                 'bank_name' => $bank_name, 'amount' => $amount, 'transaction_id' => $transaction_id, 'account_number' => $account_number]);

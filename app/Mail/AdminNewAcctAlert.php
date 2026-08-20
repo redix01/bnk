@@ -28,6 +28,6 @@ class AdminNewAcctAlert extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.admin_new_account');
+        return $this->view('emails.admin_new_account');
     }
 }

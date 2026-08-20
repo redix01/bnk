@@ -28,6 +28,6 @@ class NewAccount extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.new_account');
+        return $this->view('emails.new_account');
     }
 }
