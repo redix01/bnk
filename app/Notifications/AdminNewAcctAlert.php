@@ -41,7 +41,7 @@ class AdminNewAcctAlert extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
+        ->from(config('mail.from.address', 'noreply.com'), config('mail.from.name', config('app.name', 'Laravel')))
         ->subject(env('APP_NAME'))
             ->line("Admin, A new account has been created, check below for info ")
             ->line($this->data['user']->title." ".$this->data['user']->last_name)

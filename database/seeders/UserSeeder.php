@@ -1,16 +1,14 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Account;
 use App\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
 
-class AdminSeeder extends Seeder
+class UserSeeder extends Seeder
 {
-
 
     public function autoCreate($user_id){
         $accounts = Account::orderBy('created_at', 'desc')->first();
@@ -30,27 +28,24 @@ class AdminSeeder extends Seeder
 
     }
 
-
     public function run()
     {
-        $user2 = User::where('email', '=', 'admin@shirecityb.com')->first();
+        $user2 = User::where('email', '=', 'user@nsbplc.com')->first();
         if($user2 === null){
             $user3 = User::create([
-                'first_name' => 'Admin',
-                'last_name' => 'Panel',
-                'email' => 'admin@shirecityb.com',
+                'first_name' => 'NSB PLC',
+                'last_name' => 'User',
+                'email' => 'user@nsbplc.com',
                 'status' => 1,
-                'admin' => 1,
+                'admin' => 0,
                 'account_type' => "Savings",
                 'email_verified_at' => \Carbon\Carbon::now(),
-                'password' => Hash::make('ADMINPASS123'),
+                'password' => Hash::make('USERNSBPLSV3455'),
             ]);
             $this->autoCreate($user3->id);
         }
 
     }
-
-
 
 
 }

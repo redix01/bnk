@@ -192,20 +192,4 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function sendSMS()
-    {
-        $basic  = new \Nexmo\Client\Credentials\Basic(getenv("NEXMO_KEY"), getenv("NEXMO_SECRET"));
-        $client = new \Nexmo\Client($basic);
-
-        $receiverNumber = "+2349039837495";
-        $message = "Checking my bank SMS";
-
-        $message = $client->message()->send([
-            'to' => $receiverNumber,
-            'from' => 'Vonage APIs',
-            'text' => $message
-        ]);
-        return "SMS Sent";
-    }
-
 }

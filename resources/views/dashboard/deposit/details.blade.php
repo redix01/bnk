@@ -100,7 +100,9 @@
 
                                     <hr>
                                     <div class="col-lg-10 offset-lg-2">
-                                        {!! QrCode::size(200)->generate($payment_method->btc_wallet ? : ''); !!}
+                                        <div class="text-center p-3 border rounded bg-light">
+                                            <strong>Scan or copy the wallet address below to complete your deposit</strong>
+                                        </div>
                                     </div>
 
                                     <div class="col-lg-8">

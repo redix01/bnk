@@ -41,7 +41,7 @@ class DebitAlert extends Mailable
         $transaction_id =  $this->mail_data['transaction']->transaction_id;
 
         return $this
-        ->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
+        ->from(config('mail.from.address', 'noreply.com'), config('mail.from.name', config('app.name', 'Laravel')))
         ->subject(env('APP_NAME'))
         ->view('emails.debit-alert')->
         with(['mail_data' => $mail_data, 'first_name' => $first_name,

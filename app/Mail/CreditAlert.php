@@ -36,7 +36,7 @@ class CreditAlert extends Mailable
         $transaction_id =  $this->credit_data['transaction']->transaction_id;
 
         return $this
-        ->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
+        ->from(config('mail.from.address', 'noreply.com'), config('mail.from.name', config('app.name', 'Laravel')))
         ->subject(env('APP_NAME'))
             ->view('emails.credit-alert')
             ->with(['credit_data' => $credit_data, 'first_name' => $first_name,

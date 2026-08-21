@@ -30,7 +30,7 @@ class DeclinedDeposit extends Mailable
     public function build()
     {
         return $this->view('emails.decline-deposit')
-        ->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
+        ->from(config('mail.from.address', 'noreply.com'), config('mail.from.name', config('app.name', 'Laravel')))
         ->subject(env('APP_NAME'));
     }
 }
