@@ -89,7 +89,7 @@
             <div class="content-header bg-header-dark">
                 <!-- Logo -->
                 <a class="fw-semibold text-white tracking-wide" href="{{ route('index') }}">
-                    Nations Star Bank<span class="opacity-75"> PLC</span>
+                    {{ config('app.name') }}
                 </a>
                 <!-- END Logo -->
             </div>
@@ -104,8 +104,7 @@
             <div class="content-header justify-content-lg-center bg-header-dark">
                 <!-- Logo -->
                 <a class="fw-semibold text-white tracking-wide" href="{{ route('index') }}">
-                    NationsStar<span class="opacity-75"> Bank</span>
-                    <span class="fw-normal">PLC</span>
+                    {{ config('app.name') }}
                 </a>
                 <!-- END Logo -->
 
@@ -348,7 +347,7 @@
             <div class="row fs-sm">
 
                 <div class="col-sm-6 order-sm-1 text-center text-sm-start">
-                    <a class="fw-semibold" href="https://nsbplc.com" target="_blank">Nations Start Bank PLC</a> &copy; <span data-toggle="year-copy"></span>
+                    <a class="fw-semibold" href="{{ config('app.url') }}" target="_blank">{{ config('app.name') }}</a> &copy; <span data-toggle="year-copy"></span>
                 </div>
             </div>
         </div>

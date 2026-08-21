@@ -39,7 +39,7 @@ class NEWACCOUNT extends Notification
         return (new MailMessage)
         ->from(config('mail.from.address', 'noreply.com'), config('mail.from.name', config('app.name', 'Laravel')))
         ->subject(env('APP_NAME'))
-                    ->line("Dear ".$this->data['user']->title." ".$this->data['user']->last_name.' Your account with Nations Star Bank PLC account Bank has been established.')
+                    ->line("Dear ".$this->data['user']->title." ".$this->data['user']->last_name.' Your account with '.config('app.name').' has been established.')
                     ->line("Account Number: " . $this->data['account']->account_number)
                     ->line("Account Type: " . $this->data['user']->account_type)
                     ->line("Email: " . $this->data['user']->email)

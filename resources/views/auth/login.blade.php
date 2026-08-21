@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Meta -->
-    <meta name="description" content="NationsStar Bank PLC.">
+    <meta name="description" content="{{ config('app.name') }}.">
     <meta name="author" content="ThemePixels">
 
-    <title>NationsStar Bank PLC</title>
+    <title>{{ config('app.name') }}</title>
 
     <!-- vendor css -->
     <link href="../lib/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 
       <div class="login-wrapper wd-300 wd-xs-400 pd-25 pd-xs-40 bg-white rounded shadow-base">
           <a href="{{ route('index') }}">
-              <div class="signin-logo tx-center tx-28 tx-bold tx-inverse"><span class="tx-normal">[</span> NationsStar <span class="tx-info"> Bank PLC</span> <span class="tx-normal">]</span></div>
+               <div class="signin-logo tx-center tx-28 tx-bold tx-inverse"><span class="tx-normal">[</span> {{ config('app.name') }} <span class="tx-normal">]</span></div>
           </a>
           <form class="mt-4" action="{{ route('login') }}" method="POST">
               @csrf

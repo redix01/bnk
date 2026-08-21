@@ -5,15 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>Nations Star Bank PLC</title>
+    <title>{{ config('app.name') }}</title>
 
-    <meta name="description" content="Nations Star Bank PLC - Your growth is our interest.">
+    <meta name="description" content="{{ config('app.name') }} - Your growth is our interest.">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <!-- Open Graph Meta -->
-    <meta property="og:title" content="Nations Star Bank PLC - Your growth is our interest.">
-    <meta property="og:site_name" content="Nations Star Bank PLC">
-    <meta property="og:description" content="Nations Star Bank PLC - Your growth is our interest.">
+    <meta property="og:title" content="{{ config('app.name') }} - Your growth is our interest.">
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:description" content="{{ config('app.name') }} - Your growth is our interest.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
@@ -91,7 +91,7 @@
             <div class="d-flex align-items-center">
                 <!-- Logo -->
                 <a class="fw-semibold text-white tracking-wide" href="{{ route('index') }}">
-                    Nations Star Bank<span class="opacity-75"> PLC</span>
+                    {{ config('app.name') }}
                 </a>
                 <!-- END Logo -->
             </div>
@@ -194,7 +194,7 @@
             <div class="row fs-sm">
 
                 <div class="col-sm-6 order-sm-1 text-center text-sm-start">
-                    <a class="fw-semibold" href="https://nsbplc.com" target="_blank">Nations Start Bank PLC</a> &copy; <span data-toggle="year-copy"></span>
+                    <a class="fw-semibold" href="{{ config('app.url') }}" target="_blank">{{ config('app.name') }}</a> &copy; <span data-toggle="year-copy"></span>
                 </div>
             </div>
         </div>

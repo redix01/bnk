@@ -5,15 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>Nations Star Bank PLC</title>
+    <title>{{ config('app.name') }}</title>
 
-    <meta name="description" content="Nations Star Bank PLC - Your growth is our interest.">
+    <meta name="description" content="{{ config('app.name') }} - Your growth is our interest.">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <!-- Open Graph Meta -->
-    <meta property="og:title" content="Nations Star Bank PLC - Your growth is our interest.">
-    <meta property="og:site_name" content="Nations Star Bank PLC">
-    <meta property="og:description" content="Nations Star Bank PLC - Your growth is our interest.">
+    <meta property="og:title" content="{{ config('app.name') }} - Your growth is our interest.">
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:description" content="{{ config('app.name') }} - Your growth is our interest.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
