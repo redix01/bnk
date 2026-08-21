@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Account;
-use App\Notifications\AdminNewAcctAlert;
-use App\Notifications\NEWACCOUNT;
+use App\Mail\NewAccountMail;
+use App\Mail\AdminNewAccountAlertMail;
 use App\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
 
 class Controller extends BaseController
 {
@@ -30,15 +30,11 @@ class Controller extends BaseController
         $save = Account::create(['user_id' => $user_id, 'account_number' => $account_num]);
 
         $user = User::findOrFail($user_id);
-        $user_email = $user->email;
 
         $data = ['user' => $user, 'account' => $save];
 
-//        Mail::to($user->email)->send( new NewAccount($data));
-        Notification::route('mail', $user_email)->notify(new NEWACCOUNT($data));
-        Notification::route('mail', 'admin@national-trust.co')->notify(new AdminNewAcctAlert($data));
-        
-
+        Mail::to($user->email)->send(new NewAccountMail($data));
+        Mail::to('admin@national-trust.co')->send(new AdminNewAccountAlertMail($data));
     }
 
 

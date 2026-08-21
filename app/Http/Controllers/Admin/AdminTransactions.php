@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Account;
 use App\Http\Controllers\Controller;
-use App\Notifications\ATCCode;
-use App\Notifications\NSBCode;
-use App\Notifications\OTPCode;
+use App\Mail\ATCCodeMail;
+use App\Mail\NSBCodeMail;
+use App\Mail\OTPCodeMail;
 use App\User;
 use App\Withdrawal;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
-
-//use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminTransactions extends Controller
 {
@@ -58,10 +56,9 @@ class AdminTransactions extends Controller
 
         $wit = Withdrawal::findOrFail($id);
         $user = User::findOrFail($wit->user_id);
-        $user_email = $user->email;
         $wit->admin_nsb_code = $request->get('admin_nsb_code');
         $data = ['user' => $user, 'wit' => $wit];
-        Notification::route('mail', $user_email)->notify(new NSBCode($data));
+        Mail::to($user->email)->send(new NSBCodeMail($data));
         $wit->save();
         return redirect()->back()->with('admin_nsb_code', "NSB Code Sent Successfully");
     }
@@ -69,10 +66,9 @@ class AdminTransactions extends Controller
     {
         $wit = Withdrawal::findOrFail($id);
         $user = User::findOrFail($wit->user_id);
-        $user_email = $user->email;
         $wit->admin_otp = $request->get('admin_otp');
         $data = ['user' => $user, 'wit' => $wit];
-        Notification::route('mail', $user_email)->notify(new OTPCode($data));
+        Mail::to($user->email)->send(new OTPCodeMail($data));
         $wit->save();
         return redirect()->back()->with('admin_nsb_code', "OTP Code Sent Successfully");
     }
@@ -81,10 +77,9 @@ class AdminTransactions extends Controller
     {
         $wit = Withdrawal::findOrFail($id);
         $user = User::findOrFail($wit->user_id);
-        $user_email = $user->email;
         $wit->admin_atc_code = $request->get('admin_atc_code');
         $data = ['user' => $user, 'wit' => $wit];
-        Notification::route('mail', $user_email)->notify(new ATCCode($data));
+        Mail::to($user->email)->send(new ATCCodeMail($data));
         $wit->save();
         return redirect()->back()->with('admin_nsb_code', "ATC Code Sent Successfully");
     }

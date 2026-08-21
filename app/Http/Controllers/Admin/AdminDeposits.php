@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Account;
 use App\Deposit;
 use App\Http\Controllers\Controller;
-use App\Notifications\DepositAlert;
+use App\Mail\DepositAlertMail;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
 
 class AdminDeposits extends Controller
 {
@@ -44,7 +44,7 @@ class AdminDeposits extends Controller
         $account->save();
         //send mail
         $user = User::findOrFail($request->user_id);
-        Notification::route('mail', $user->email)->notify(new DepositAlert($deposit));
+        Mail::to($user->email)->send(new DepositAlertMail($deposit));
         return redirect()->route('admin.deposits')->with('success', "Fu");
 
     }

@@ -6,14 +6,14 @@ use App\Account;
 use App\Deposit;
 use App\Http\Controllers\Controller;
 use App\Mail\CardRequest;
-use App\Notifications\FundAccount;
+use App\Mail\FundAccountMail;
 use App\RequestCard;
 use App\Rules\MatchOldPassword;
 use App\User;
 use App\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -121,8 +121,7 @@ class AdminController extends Controller
         $account->balance += $add_amt;
         $account->balance2 += $add_amt;
         $data = [ 'account' => $account, 'add_amt' => $add_amt, 'user' => $user];
-//        $user->notify(new FundAccount($data))->toMail($user->email);
-        Notification::route('mail', $user->email)->notify(new FundAccount($data));
+        Mail::to($user->email)->send(new FundAccountMail($data));
         $account->save();
         return redirect()->back()->with('fund_success', "Account has been funded successfully");
 

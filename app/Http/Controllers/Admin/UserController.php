@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Account;
 use App\Http\Controllers\Controller;
-use App\Notifications\ApproveUser;
+use App\Mail\ApproveUserMail;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -53,7 +53,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->status = 1;
         $user->save();
-        Notification::send($user, new ApproveUser($user));
+        Mail::to($user->email)->send(new ApproveUserMail($user));
         return redirect()->back();
     }
 

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Loan;
-use App\Notifications\AcceptLoan;
+use App\Mail\AcceptLoanMail;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
 
 class AdminLoans extends Controller
 {
@@ -30,7 +30,7 @@ class AdminLoans extends Controller
         $user->account->save();
         $loan->status = 1;
         $loan->save();
-        Notification::send($user, new AcceptLoan($loan));
+        Mail::to($user->email)->send(new AcceptLoanMail($loan));
         return redirect()->back()->with('success', "User is now eligable");
     }
 
