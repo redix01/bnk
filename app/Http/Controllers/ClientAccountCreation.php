@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class ClientAccountCreation extends Controller
 {
@@ -51,7 +50,7 @@ class ClientAccountCreation extends Controller
 
             $avatar = $request->file('avatar'); // in here
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(200, 200)->save(public_path('avatars/' . $filename));
+            $avatar->move(public_path('avatars'), $filename);
 
             $user = new User();
             $user->first_name = $request->get('first_name');

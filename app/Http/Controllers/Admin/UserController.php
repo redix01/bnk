@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
-use Intervention\Image\ImageManagerStatic as Image;
 
 
 class UserController extends Controller
@@ -109,12 +108,7 @@ class UserController extends Controller
 
             $avatar = $request->file('avatar'); // in here
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(200, 200)->save(public_path('avatars/' . $filename));
-
-//            $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-//            $destinationPath = public_path('/avatars');
-//            $image->move($destinationPath, $input['imagename']);
-//            Image::make($avatar)->resize(150, 150)->save(public_path('avatars/' . $filename));
+            $avatar->move(public_path('avatars'), $filename);
 
             $user = new User();
             $user->first_name = $request->get('first_name');
@@ -205,19 +199,15 @@ class UserController extends Controller
 
     public function update_user(Request $request, $id)
     {
-        if ($image = $request->file('avatar')){
-            $avatar = $request->file('avatar'); // in here
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(200, 200)->save(public_path('avatars/' . $filename));
-
-            $user = User::findOrFail($id);
-            $user->update(['avatar' => $filename]);
-            $data = $this->getUpdateData($request, $id);
-            $user->update($data);
-            return redirect()->back()->with('success', 'Profile Updated Successful');
-        }
         $user = User::findOrFail($id);
         $data = $this->getUpdateData($request, $id);
+
+        if ($avatar = $request->file('avatar')) {
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            $avatar->move(public_path('avatars'), $filename);
+            $data['avatar'] = $filename;
+        }
+
         $user->update($data);
         return redirect()->back()->with('success', 'Profile Updated Successful');
     }
